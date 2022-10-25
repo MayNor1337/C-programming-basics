@@ -6,6 +6,13 @@ int **visit;
 int **adjacencyMatrix;
 char a[10000][10000];
 
+void bin_print(unsigned n) {
+    if ( n ) {
+        bin_print(n >> 1);
+        printf("%u", n & 1);
+    }
+}
+
 void preset(int n);
 bool graphTraversal(int startX, int startY, int finishX, int finishY);
 
@@ -13,12 +20,10 @@ int main()
 {
     int n;
     char temp;
-    scanf("%d\n", &n);
     for(int i = 1; i <= n; i++)
     {
         for(int j = 1; j <= n; j++)
         {
-            //printf("%d %d\n", i, j);
             scanf("%c", &a[i][j]);
             scanf("%c", &temp);
         }

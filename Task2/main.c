@@ -51,7 +51,7 @@ void Task(int (*a)[2], int n)
 
     int index = a[0][0];
     printf("%d ", index);
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         if(index < a[i][0])
         {
