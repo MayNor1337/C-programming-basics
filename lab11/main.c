@@ -13,7 +13,7 @@ int main() {
     scanf("%lf", &x2);
     scanf("%lf", &y2);
 
-    struct Parallelogram s = {x0, y0, x1, y1, x2, y2};
+    struct Parallelogram s = NewParallelogram(x0, y0, x1, y1, x2, y2);
 
     CalculatePerimeter(&s);
     CalculateSquare(&s);

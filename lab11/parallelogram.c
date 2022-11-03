@@ -5,20 +5,43 @@
 #include <stdio.h>
 #include <math.h>
 
+struct Point NewPoint(double x, double y)
+{
+    struct Point p = {x, y};
+    return p;
+}
+
+struct Parallelogram NewParallelogram(double x0, double y0, double x1, double y1, double x2, double y2){
+    struct Parallelogram p = {NewPoint(x0, y0), NewPoint(x1, y1), NewPoint(x2, y2), 0, 0, 0, 0, 0};
+    return p;
+}
+
+double Pifagor(struct Point first, struct Point second)
+{
+    return sqrt((first.x - second.x) * (first.x - second.x) + (first.y - second.y) * (first.y - second.y));
+}
+
 void CalculatePerimeter(struct Parallelogram * this)
 {
-    this->length1 = sqrt((this->x0 - this->x1) * (this->x0 - this->x1) + (this->y0 - this->y1) * (this->y0 - this->y1));
-    this->length2 = sqrt((this->x0 - this->x2) * (this->x0 - this->x2) + (this->y0 - this->y2) * (this->y0 - this->y2));
-    this->perimeter = this->length1 * 2 + this->length2 * 2;
+    this->firstLength = this->firstLength ?: Pifagor(this->firstPoint, this->secondPoint);
+    this->secondLength = this->firstLength ?: Pifagor(this->firstPoint, this->thirdPoint);
+    this->perimeter = this->perimeter ?: this->firstLength * 2 + this->secondLength * 2;
+}
+
+double CalcelateCosSqure(struct Parallelogram * this)
+{
+    return (this->firstLength * this-> firstLength + this->secondLength * this->secondLength - this->diagonal * this->diagonal)
+           / (2 * this->firstLength * this-> firstLength * this->secondLength * this->secondLength);
 }
 
 void CalculateSquare(struct Parallelogram * this)
 {
-    this->length1 = sqrt((this->x0 - this->x1) * (this->x0 - this->x1) + (this->y0 - this->y1) * (this->y0 - this->y1));
-    this->length2 = sqrt((this->x0 - this->x2) * (this->x0 - this->x2) + (this->y0 - this->y2) * (this->y0 - this->y2));
-    this->length3 = sqrt((this->x1 - this->x2) * (this->x1 - this->x2) + (this->y1 - this->y2) * (this->y1 - this->y2));
-    double cos = (this->length1 * this-> length1 + this->length2 * this->length2 - this->length3 * this->length3)
-                    / (2 * this->length1 * this-> length1 * this->length2 * this->length2);
-    this->sin = 1 - cos * cos;
-    this->square = this->length1 * this->length2 * this->sin;
+    this->firstLength = this->firstLength ?: Pifagor(this->firstPoint, this->secondPoint);
+    this->secondLength = this->firstLength ?: Pifagor(this->firstPoint, this->thirdPoint);
+    this->diagonal = this->diagonal ?: Pifagor(this->secondPoint, this->thirdPoint);
+    double cosSquare = CalcelateCosSqure(this);
+    double sin = sqrt(1 - cosSquare);
+    this->square = this->square ?: this->firstLength * this->secondLength * sin;
 }
+
+

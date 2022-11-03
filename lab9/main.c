@@ -21,9 +21,9 @@ int main() {
     float price;
     scanf("%f", &price);
 
-    if (priceMonth / 499.0 > price) {
+    if (priceMonth / 499.0 - price > 0.1) {
         printf("durak");
-    } else if (sumCalls <= 499) {
+    } else if (sumCalls - 499.0 <= 0.1) {
         printf("%f", priceMonth);
     } else printf("%f", priceMonth + (sumCalls - 499.0) * price);
 
