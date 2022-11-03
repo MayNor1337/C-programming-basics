@@ -29,34 +29,19 @@ double** GetDistance(int **a, int n)
     return b;
 }
 
-char* delete(char* s, int index)
+int rec(int k)
 {
-    char* ans;
-    int lenStr = strlen(s) - 1;
-    int j;
-    ans = (char*) malloc(lenStr * sizeof (char));
-
-    for(int i = 0; i < lenStr; i++)
+    if(k == 0)
     {
-        if(i != index)
-        {
-            ans[j] = s[i];
-            j++;
-        }
+        return 0;
     }
-
-    return ans;
-}
-
-void rec()
-{
-
+    return (k % 10) + rec(k / 10);
 }
 
 
 int main() {
 //#2
-    /*int n;
+    int n;
     scanf("%d", &n);
     int **a;
     a = (int **) malloc(n * sizeof(int *));
@@ -74,8 +59,11 @@ int main() {
             printf("%f ", distance[i][j]);
         }
         printf("\n");
-    }*/
-    //#5
-
+    }
+    //#4
+    int k;
+    scanf("%d", &k);
+    int sum = rec(k);
+    printf("%d", sum);
     return 0;
 }
