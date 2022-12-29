@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <windows.h></windows.h>
 #include <string.h>
 
 double** GetDistance(int **a, int n)
@@ -38,32 +39,50 @@ int rec(int k)
     return (k % 10) + rec(k / 10);
 }
 
+int iter(int k)
+{
+    int sum = 0;
+
+    while(k != 0)
+    {
+        sum = (k % 10);
+        k /= 10;
+    }
+
+    return sum;
+}
+
 
 int main() {
 //#2
-    int n;
-    scanf("%d", &n);
-    int **a;
-    a = (int **) malloc(n * sizeof(int *));
-    for(int i = 0; i < n; i++)
-    {
-        a[i] = (int*) malloc(2 * sizeof (int));
-        scanf("%d", &a[i][0]);
-        scanf("%d", &a[i][1]);
-    }
-    double **distance = GetDistance(a, n);
-    for(int i = 0; i < n; i++)
-    {
-        for(int j = 0; j < n - 1; j++)
-        {
-            printf("%f ", distance[i][j]);
-        }
-        printf("\n");
-    }
+//    int n;
+//    scanf("%d", &n);
+//    int **a;
+//    a = (int **) malloc(n * sizeof(int *));
+//    for(int i = 0; i < n; i++)
+//    {
+//        a[i] = (int*) malloc(2 * sizeof (int));
+//        scanf("%d", &a[i][0]);
+//        scanf("%d", &a[i][1]);
+//    }
+//    double **distance = GetDistance(a, n);
+//    for(int i = 0; i < n; i++)
+//    {
+//        for(int j = 0; j < n - 1; j++)
+//        {
+//            printf("%f ", distance[i][j]);
+//        }
+//        printf("\n");
+//    }
     //#4
     int k;
     scanf("%d", &k);
+
     int sum = rec(k);
-    printf("%d", sum);
+
+    int sum2 = iter(k);
+
+    printf("%d", sum2);
+    printf(" %d", sum);
     return 0;
 }
