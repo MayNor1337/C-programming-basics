@@ -3,8 +3,7 @@
 #include <stdint.h>
 
 //https://habr.com/ru/post/142662/
-#pragma pack(push, 2)
-
+#pragma pack(push, 1)
 struct BMPHeader
 {
     int8_t   _type[2];

@@ -22,4 +22,5 @@ void ReadHead(struct Header *hdr, FILE *file)
     fread(&hdr->_flags, sizeof(uint8_t), 1, file);
     fread(&hdr->_size, sizeof(uint32_t), 1, file);
     hdr->_size = AntiSynchsafe(hdr->_size);
+    hdr->_fileId[3] = '\0';
 }

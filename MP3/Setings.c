@@ -1,8 +1,10 @@
+#include <stdio.h>
 #include "Setings.h"
 
 struct Setings NewSettings()
 {
     struct Setings s;
+    s.filepath = NULL;
     return s;
 }
 
